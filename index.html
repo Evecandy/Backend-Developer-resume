@@ -2,9 +2,710 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eve Candy Mutunga - Backend Developer Resume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.3;
+            color: #333;
+            background: #f8f9fa;
+            font-size: 11px;
+        }
+
+        .container {
+            max-width: 8.5in;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header - Healthcare Theme */
+        .header {
+            background: linear-gradient(135deg, #2c5282 0%, #1a365d 100%);
+            color: white;
+            padding: 20px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '⚕️';
+            position: absolute;
+            top: 10px;
+            right: 30px;
+            font-size: 2rem;
+            opacity: 0.1;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .name-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .name {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #68d391;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .portfolio-link {
+            background: #68d391;
+            color: #1a365d;
+            padding: 6px 12px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        .portfolio-link:hover {
+            transform: scale(1.05);
+        }
+
+        .tagline {
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            color: #a0aec0;
+            font-style: italic;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            font-size: 0.8rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Impact Statement Box - FIXED POSITIONING */
+        .impact-box {
+            background: linear-gradient(135deg, rgba(104, 211, 145, 0.1) 0%, rgba(56, 178, 172, 0.1) 100%);
+            border-left: 4px solid #68d391;
+            padding: 15px 30px;
+            position: relative;
+            z-index: 1;
+            /* Removed negative margin that was causing overlap */
+        }
+
+        .impact-title {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+
+        .impact-text {
+            color: #2d3748;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        /* Main content - FIXED GRID AND SPACING */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1.8fr 1fr;
+            gap: 25px;
+            padding: 25px 30px;
+            flex-grow: 1;
+            /* Ensure proper stacking context */
+            position: relative;
+            z-index: 0;
+        }
+
+        /* Section styling - compact */
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            color: #1a365d;
+            border-bottom: 2px solid #68d391;
+            padding-bottom: 3px;
+            margin-bottom: 12px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Experience - FIXED TIMELINE */
+        .experience-item {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 18px;
+            /* Clear any floating issues */
+            clear: both;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 3px;
+            width: 8px;
+            height: 8px;
+            background: #68d391;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 0 0 2px #68d391;
+        }
+
+        .experience-item::after {
+            content: '';
+            position: absolute;
+            left: 3px;
+            top: 15px;
+            width: 2px;
+            height: calc(100% - 11px);
+            background: #e2e8f0;
+        }
+
+        .experience-item:last-child::after {
+            display: none;
+        }
+
+        .job-title {
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: #1a365d;
+            margin-bottom: 2px;
+        }
+
+        .company-date {
+            display: flex;
+            justify-content: space-between;
+            color: #68d391;
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 0.8rem;
+        }
+
+        .job-location {
+            color: #718096;
+            font-size: 0.75rem;
+            margin-bottom: 8px;
+        }
+
+        .achievement {
+            background: #f7fafc;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            border-left: 3px solid #68d391;
+            /* Prevent overflow issues */
+            overflow: hidden;
+        }
+
+        .achievement-title {
+            font-weight: bold;
+            color: #1a365d;
+            margin-bottom: 3px;
+            font-size: 0.85rem;
+        }
+
+        .achievement-desc {
+            color: #4a5568;
+            font-size: 0.8rem;
+            line-height: 1.3;
+        }
+
+        .metrics {
+            background: #68d391;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 3px;
+        }
+
+        /* Skills - compact grid */
+        .skills-category {
+            margin-bottom: 15px;
+        }
+
+        .skills-category h4 {
+            font-size: 0.9rem;
+            color: #1a365d;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .skill-tag {
+            background: #68d391;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+
+        /* Project showcase - compact */
+        .project-item {
+            background: #f7fafc;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .project-title {
+            font-weight: bold;
+            color: #1a365d;
+            margin-bottom: 5px;
+            font-size: 0.85rem;
+        }
+
+        .project-desc {
+            color: #4a5568;
+            font-size: 0.8rem;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3px;
+        }
+
+        .tech-tag {
+            background: #68d391;
+            color: white;
+            padding: 1px 5px;
+            border-radius: 8px;
+            font-size: 0.65rem;
+            font-weight: 500;
+        }
+
+        /* Why hire me box - healthcare focused */
+        .hire-me-box {
+            background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            text-align: center;
+            /* Ensure proper containment */
+            position: relative;
+        }
+
+        .hire-me-title {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #68d391;
+        }
+
+        .hire-me-points {
+            list-style: none;
+            padding: 0;
+            font-size: 0.8rem;
+        }
+
+        .hire-me-points li {
+            margin-bottom: 5px;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .hire-me-points li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #68d391;
+            font-weight: bold;
+        }
+
+        /* Education - compact */
+        .education-item {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #68d391;
+        }
+
+        .degree {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #1a365d;
+            margin-bottom: 3px;
+        }
+
+        .university {
+            color: #68d391;
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 0.85rem;
+        }
+
+        .education-details {
+            color: #4a5568;
+            font-size: 0.75rem;
+            line-height: 1.3;
+        }
+
+        /* Certifications - minimal */
+        .cert-grid {
+            display: grid;
+            gap: 6px;
+        }
+
+        .cert-item {
+            background: white;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+            position: relative;
+        }
+
+        .cert-item::before {
+            content: '🏆';
+            position: absolute;
+            top: 5px;
+            right: 8px;
+            font-size: 0.9rem;
+        }
+
+        .cert-name {
+            font-weight: bold;
+            color: #1a365d;
+            margin-bottom: 2px;
+            font-size: 0.8rem;
+        }
+
+        .cert-org {
+            color: #68d391;
+            font-size: 0.7rem;
+            margin-bottom: 2px;
+        }
+
+        .cert-date {
+            color: #718096;
+            font-size: 0.65rem;
+        }
+
+        /* ADDITIONAL FIXES FOR LAYOUT STABILITY */
+        main, aside {
+            /* Prevent column collapse */
+            min-height: 1px;
+            /* Clear any floats */
+            overflow: hidden;
+        }
+
+        /* Ensure proper flow */
+        .container > * {
+            flex-shrink: 0;
+        }
+
+        /* Print optimization */
+        @media print {
+            body {
+                background: white;
+                font-size: 10px;
+            }
+            .container {
+                box-shadow: none;
+                page-break-after: avoid;
+            }
+            .main-content {
+                padding: 20px 25px;
+            }
+            /* Prevent page breaks in important sections */
+            .experience-item,
+            .project-item,
+            .hire-me-box {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
 </head>
 <body>
+<div class="container">
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="name-title">
+                <div>
+                    <h1 class="name">EVE CANDY MUTUNGA</h1>
+                    <p class="tagline">"Backend Developer passionate about healthcare technology impact"</p>
+                </div>
+                <a href="https://code-with-candy.vercel.app/" class="portfolio-link" target="_blank">
+                    🌐 PORTFOLIO
+                </a>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-item">📧 evecandymutunga@gmail.com</div>
+                <div class="contact-item">📱 +254 710 987 128</div>
+                <div class="contact-item">💼 linkedin.com/in/evecandy</div>
+                <div class="contact-item">📍 Nairobi, Kenya</div>
+            </div>
+        </div>
+    </header>
 
+    <!-- Impact Statement -->
+    <div class="impact-box">
+        <div class="impact-title">🎯 Perfect Fit for Savannah Informatics Healthcare Mission</div>
+        <p class="impact-text">
+            Computer Systems Engineer with proven backend development experience, quality-first mindset, and passion for scalable solutions.
+            Ready to build robust healthcare systems that empower facilities across the region while ensuring security and compliance.
+        </p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Left Column -->
+        <main>
+            <!-- Experience -->
+            <section class="section">
+                <h3 class="section-title">💼 Backend Development Experience</h3>
+
+                <div class="experience-item">
+                    <div class="job-title">Software Engineer in Test</div>
+                    <div class="company-date">
+                        <span>Safaricom PLC</span>
+                        <span>Oct 2024 - Apr 2025</span>
+                    </div>
+                    <div class="job-location">Nairobi, Kenya | Healthcare-adjacent Fintech</div>
+
+                    <div class="achievement">
+                        <div class="achievement-title">🚀 API Development & Testing</div>
+                        <div class="achievement-desc">
+                            Developed and tested REST APIs for JavaScript-based mini applications, ensuring seamless integration
+                            and optimal performance for mission-critical healthcare payment systems.
+                        </div>
+                        <span class="metrics">JavaScript • REST APIs • Testing</span>
+                    </div>
+
+                    <div class="achievement">
+                        <div class="achievement-title">⚡ System Performance Optimization</div>
+                        <div class="achievement-desc">
+                            Analyzed backend system performance, identified bottlenecks, and implemented optimizations
+                            that improved customer onboarding efficiency by 30%.
+                        </div>
+                        <span class="metrics">30% performance improvement</span>
+                    </div>
+
+                    <div class="achievement">
+                        <div class="achievement-title">🔒 Security & Compliance Focus</div>
+                        <div class="achievement-desc">
+                            Implemented authentication, authorization, and data protection best practices in regulated
+                            fintech environment - directly applicable to healthcare compliance requirements.
+                        </div>
+                        <span class="metrics">Security-first approach</span>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="job-title">Software Engineer Intern</div>
+                    <div class="company-date">
+                        <span>THE Jitu</span>
+                        <span>May 2023 - Jul 2023</span>
+                    </div>
+                    <div class="job-location">Kirinyaga, Kenya</div>
+
+                    <div class="achievement">
+                        <div class="achievement-title">🔥 Full-Stack Integration</div>
+                        <div class="achievement-desc">
+                            Built scalable backend services with Firebase integration, implementing real-time data
+                            synchronization and user authentication systems.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Key Projects -->
+            <section class="section">
+                <h3 class="section-title">🚀 Healthcare-Ready Backend Projects</h3>
+
+                <div class="project-item">
+                    <div class="project-title">E-commerce Backend System</div>
+                    <div class="project-desc">
+                        Scalable Spring Boot backend with comprehensive CRUD operations, user authentication,
+                        and secure data management - perfect foundation for healthcare management systems.
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Java</span>
+                        <span class="tech-tag">Spring Boot</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">REST APIs</span>
+                        <span class="tech-tag">Authentication</span>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <div class="project-title">Car Sales Platform (Collaborative)</div>
+                    <div class="project-desc">
+                        Microservices-based platform with order tracking, user management, and real-time updates.
+                        Demonstrates ability to build complex, distributed systems suitable for healthcare facilities.
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Java</span>
+                        <span class="tech-tag">Spring Boot</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Microservices</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Education -->
+            <section class="section">
+                <h3 class="section-title">🎓 Education</h3>
+                <div class="education-item">
+                    <div class="degree">BSc Computer Systems Engineering</div>
+                    <div class="university">Kirinyaga University (2020-2024)</div>
+                    <div class="education-details">
+                        <strong>Focus:</strong> System Architecture, Backend Development, Database Design<br>
+                        <strong>Activities:</strong> Computer Society of Kirinyaga (CSK), Technical Leadership
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Right Column -->
+        <aside>
+            <!-- Why Hire Me Box -->
+            <div class="hire-me-box">
+                <div class="hire-me-title">Why Savannah Should Hire Me</div>
+                <ul class="hire-me-points">
+                    <li>Java & Spring Boot expertise</li>
+                    <li>REST API design & development</li>
+                    <li>Database schema optimization</li>
+                    <li>Security & compliance mindset</li>
+                    <li>Healthcare sector experience</li>
+                    <li>System performance analysis</li>
+                    <li>Cross-functional collaboration</li>
+                    <li>Rapid learning & adaptation</li>
+                    <li>Quality-driven development</li>
+                    <li>Linux & version control pro</li>
+                </ul>
+            </div>
+
+            <!-- Technical Skills -->
+            <section class="section">
+                <h3 class="section-title">🛠️ Backend Technologies</h3>
+
+                <div class="skills-category">
+                    <h4>Core Languages</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Python (Learning)</span>
+                    </div>
+                </div>
+
+                <div class="skills-category">
+                    <h4>Frameworks & APIs</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Spring Boot</span>
+                        <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Express.js</span>
+                    </div>
+                </div>
+
+                <div class="skills-category">
+                    <h4>Databases & Storage</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">Oracle</span>
+                        <span class="skill-tag">Database Design</span>
+                    </div>
+                </div>
+
+                <div class="skills-category">
+                    <h4>DevOps & Testing</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Unit Testing</span>
+                        <span class="skill-tag">Integration Testing</span>
+                        <span class="skill-tag">Kubernetes</span>
+                    </div>
+                </div>
+
+                <div class="skills-category">
+                    <h4>Security & Compliance</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Authentication</span>
+                        <span class="skill-tag">Authorization</span>
+                        <span class="skill-tag">Data Protection</span>
+                        <span class="skill-tag">HIPAA Aware</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Certifications -->
+            <section class="section">
+                <h3 class="section-title">🏆 Certifications</h3>
+                <div class="cert-grid">
+                    <div class="cert-item">
+                        <div class="cert-name">Kubernetes Cloud Native</div>
+                        <div class="cert-org">Linux Foundation</div>
+                        <div class="cert-date">June 2025</div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-name">Linux Fundamentals</div>
+                        <div class="cert-org">Linux Foundation</div>
+                        <div class="cert-date">May 2025</div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-name">Additional K8s Cert</div>
+                        <div class="cert-org">Linux Foundation</div>
+                        <div class="cert-date">2024-25</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Key Differentiators -->
+            <section class="section">
+                <h3 class="section-title">⭐ Healthcare Ready</h3>
+                <div style="background: #f7fafc; padding: 10px; border-radius: 6px; font-size: 0.8rem; color: #4a5568;">
+                    ✓ <strong>System Design:</strong> Scalable architecture experience<br>
+                    ✓ <strong>API Design:</strong> REST & GraphQL ready<br>
+                    ✓ <strong>Database ORM:</strong> Schema optimization<br>
+                    ✓ <strong>Event-Driven:</strong> Async processing knowledge<br>
+                    ✓ <strong>Integration:</strong> External services experience<br>
+                    ✓ <strong>Testing:</strong> Unit, integration, E2E<br>
+                    ✓ <strong>Security:</strong> Auth & compliance focus<br>
+                    ✓ <strong>Fast Learner:</strong> Golang adaptability
+                </div>
+            </section>
+        </aside>
+    </div>
+</div>
 </body>
 </html>
